@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <sys/sysinfo.h>
 #include <sys/utsname.h>
+#include <string.h>
 //# Flatfetch (shell and system info)
 int main() {
 //# structs
@@ -24,6 +26,10 @@ int main() {
     char* str = (char*)malloc(num + 3);
     memset(str, x, num); 
     str[num] = '\0'; 
+    char path[40], shell[8];
+    sprintf(path, "/proc/%d/comm", getppid());
+    FILE *f = fopen(path, "r");
+    fgets(shell, sizeof(shell), f);
 //# show info
     printf("....._=XYYYX=_..... X %s\n", user);
     printf("._X&$$$$$$$$$$$&X_. X%s \n", str);
@@ -32,8 +38,8 @@ int main() {
     printf("@@#@x==@#@@+++#@@#@ X Machine - %s \n", buffer.machine);
     printf("@@@@FFxxx====+@@@@@ X Nodename - %s \n", buffer.nodename);
     printf("X@@@@FFFFxx=@@@@@@X X Version - %s \n", buffer.version);
-    printf("=xX&@@@@@@@@@@@&Xx= X FlatShell ver - %s \n", ver);
+    printf("=xX&@@@@@@@@@@@&Xx= X Shell - %s", shell);
     printf("...-=xX&@@@&Xx=-... X Total freq * cores - %.2f MHZ * %ld CORES \n", max_freq_khz / 1000.0, cores);
-    printf("                    X Total Ram Vol - %lld MB  \n\n", total_ram_mb);
-    free(str);
+    printf("                    X Total Ram Vol - %lld MB  \n", total_ram_mb);
+    fclose(f);free(str);return 0;
 }
