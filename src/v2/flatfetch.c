@@ -17,6 +17,7 @@
 #define DGR "\033[48;2;39;39;49;38;2;90;90;100m"
 #define GR "\033[48;2;39;39;49;38;2;119;119;169m"
 #define FLAME "\033[48;2;89;89;209;38;2;22;21;103m"
+#define ERR "\033[48;2;90;1;1;38;2;11;11;13m"
 //# Flatfetch (shell and system info)
 //# Most of terminals interpreter custom colors as blue or another colors
 //#
@@ -56,6 +57,6 @@ int main() {
     printf("%s=xX&@@@@@@@@@@@&Xx=%s X Shell - %s",BK,NO,shell);
     printf("%s...-=xX&@@@&Xx=-...%s X Total freq * cores - %.2f MHZ * %ld CORES\n",BK,NO,max_freq_khz / 1000.0, cores);
     printf("                    X Total Ram Vol - %lld MB\n", total_ram_mb);
-    printf("%sX%sX%sX%sX%sX%sX%sX%sX%sX%sX%sX%sX\n",BK,DGR,GR,WH,RD,YL,GN,CY,BL,MG,FLAME,NO);
+    printf("%sX%sX%sX%sX%sX%sX%sX%sX%sX%sX%sX%sX\n",BK,DGR,GR,WH,RD,YL,GN,CY,BL,MG,FLAME,ERR,NO);
     fclose(f);free(str);
 }
